@@ -1,0 +1,48 @@
+﻿@page
+@model GameCatalog.Pages.Games.CreateModel
+@{
+    ViewData["Title"] = "Добавить игру";
+}
+
+<h1>Добавить игру</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Game.Title" class="control-label"></label>
+        <input asp-for="Game.Title" class="form-control" />
+        <span asp-validation-for="Game.Title" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Game.Developer" class="control-label"></label>
+        <input asp-for="Game.Developer" class="form-control" />
+        <span asp-validation-for="Game.Developer" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Game.ReleaseYear" class="control-label"></label>
+        <input asp-for="Game.ReleaseYear" class="form-control" type="number" />
+        <span asp-validation-for="Game.ReleaseYear" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Game.GenreId" class="control-label"></label>
+        <select asp-for="Game.GenreId" class="form-control" asp-items="Model.Genres"></select>
+        <span asp-validation-for="Game.GenreId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Game.Description" class="control-label"></label>
+        <textarea asp-for="Game.Description" class="form-control"></textarea>
+        <span asp-validation-for="Game.Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Game.ImageUrl" class="control-label"></label>
+        <input asp-for="Game.ImageUrl" class="form-control" />
+        <span asp-validation-for="Game.ImageUrl" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+    <a asp-page="./Index" class="btn btn-secondary">Назад</a>
+</form>
