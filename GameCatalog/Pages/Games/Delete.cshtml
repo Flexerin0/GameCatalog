@@ -1,0 +1,18 @@
+﻿@page "{id:int}"
+@model GameCatalog.Pages.Games.DeleteModel
+@{
+    ViewData["Title"] = "Удаление игры";
+}
+
+<div class="d-flex justify-content-center align-items-center" style="min-height: 70vh;">
+    <div class="text-center">
+        <h1 class="mb-4">Удалить игру</h1>
+        <h3 class="mb-4">Вы уверены, что хотите удалить игру "<strong>@Model.Game.Title</strong>"?</h3>
+
+        <form method="post">
+            <input type="hidden" asp-for="Game.Id" />
+            <button type="submit" class="btn btn-danger me-2">Удалить</button>
+            <a asp-page="Index" class="btn btn-secondary">Отмена</a>
+        </form>
+    </div>
+</div>

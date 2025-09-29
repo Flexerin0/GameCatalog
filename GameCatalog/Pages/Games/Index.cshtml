@@ -4,30 +4,32 @@
     ViewData["Title"] = "Каталог игр";
 }
 
-<h1 class="mb-4">Список игр</h1>
+<div class="content-overlay">
+    <h1 class="mb-4 text-light">Список игр</h1>
 
-<div class="mb-3">
-    <a asp-page="Create" class="btn btn-success">
-        <i class="bi bi-plus-circle"></i> Добавить игру
-    </a>
-</div>
+    <div class="mb-3">
+        <a asp-page="Create" class="btn btn-success">
+            <i class="bi bi-plus-circle"></i> Добавить игру
+        </a>
+    </div>
 
-<div class="row">
-    @foreach (var game in Model.Games)
-    {
-        <div class="col-md-4 mb-3">
-            <div class="card h-100 shadow-sm">
-                <img src="@game.ImageUrl" class="card-img-top" alt="@game.Title" />
-                <div class="card-body d-flex flex-column">
-                    <h5 class="card-title">@game.Title</h5>
-                    <p class="card-text">@game.Developer (@game.ReleaseYear)</p>
-                    <p class="card-text">
-                        Жанр: @(game.Genre != null ? game.Genre.Name : "Не указан")
-                    </p>
-                    <p class="card-text description flex-grow-1">@game.Description</p>
-                    <a asp-page="Details" asp-route-id="@game.Id" class="btn btn-primary mt-auto">Подробнее</a>
+    <div class="row">
+        @foreach (var game in Model.Games)
+        {
+            <div class="col-md-4 mb-3">
+                <div class="card h-100 shadow-sm">
+                    <img src="@game.ImageUrl" class="card-img-top" alt="@game.Title" />
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">@game.Title</h5>
+                        <p class="card-text">@game.Developer (@game.ReleaseYear)</p>
+                        <p class="card-text">
+                            Жанр: @(game.Genre != null ? game.Genre.Name : "Не указан")
+                        </p>
+                        <p class="card-text description flex-grow-1">@game.Description</p>
+                        <a asp-page="Details" asp-route-id="@game.Id" class="btn btn-primary mt-auto">Подробнее</a>
+                    </div>
                 </div>
             </div>
-        </div>
-    }
+        }
+    </div>
 </div>
