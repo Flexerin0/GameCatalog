@@ -44,7 +44,15 @@ namespace GameCatalog.Pages.Games
                 return Page();
             }
 
-            _context.Attach(Game).State = EntityState.Modified;
+            var gameToUpdate = await _context.Games.FindAsync(Game.Id);
+            if (gameToUpdate == null) return NotFound();
+
+            if (await TryUpdateModelAsync<Game>(gameToUpdate, "Game",
+                g => g.Title, g => g.Developer, g => g.ReleaseYear, g => g.GenreId, g => g.Description, g => g.ImageUrl))
+            {
+                await _context.SaveChangesAsync();
+                return RedirectToPage("Index");
+            }
 
             try
             {

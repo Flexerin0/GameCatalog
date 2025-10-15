@@ -27,11 +27,26 @@ using (var scope = app.Services.CreateScope())
     if (!db.Genres.Any())
     {
         db.Genres.AddRange(
-            new Genre { Name = "Action" },
-            new Genre { Name = "RPG" },
-            new Genre { Name = "Shooter" },
-            new Genre { Name = "Strategy" },
-            new Genre { Name = "Adventure" }
+            //new Genre { Name = "Action" },
+            //new Genre { Name = "RPG" },
+            //new Genre { Name = "Shooter" },
+            //new Genre { Name = "Strategy" },
+            //new Genre { Name = "Adventure" }
+            new Genre { Name = "Экшен" },
+            new Genre { Name = "Ролевые игры (RPG)" },
+            new Genre { Name = "Шутер" },
+            new Genre { Name = "Хоррор" },
+            new Genre { Name = "Файтинг" },
+            new Genre { Name = "Стратегия" },
+            new Genre { Name = "Головоломка" },
+            new Genre { Name = "Песочница" },
+            new Genre { Name = "Выживание" },
+            new Genre { Name = "Визуальная новелла" },
+            new Genre { Name = "Лутер-шутер" },
+            new Genre { Name = "ММО" },
+            new Genre { Name = "Спорт" },
+            new Genre { Name = "Соревновательная" },
+            new Genre { Name = "Симулятор" }
         );
         db.SaveChanges();
     }
