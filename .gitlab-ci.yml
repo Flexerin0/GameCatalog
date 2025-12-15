@@ -1,0 +1,35 @@
+stages:
+  - build
+  - deploy
+
+variables:
+  NEXUS_URL: "" # ВПИСАТЬ URL NEXUS, ПРИМЕР: http://NEXUS_IP:8081
+  DEPLOY_USER: "ubuntu"
+  DEPLOY_HOST: "" # ВПИСАТЬ IP ВМ ДЛЯ ДЕПЛОЯ
+  DOTNET_CLI_TELEMETRY_OPTOUT: "1"
+
+build:
+  stage: build
+  image: mcr.microsoft.com/dotnet/sdk:6.0
+  script:
+    - dotnet nuget add source $NEXUS_URL/repository/nuget-hosted/ -n nexus || true
+    - dotnet restore
+    - dotnet publish -c Release -o publish
+  artifacts:
+    paths:
+      - publish/
+    expire_in: 1 hour
+
+deploy:
+  stage: deploy
+  image: alpine:latest
+  before_script:
+    - apk add --no-cache openssh rsync
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - ssh-keyscan $DEPLOY_HOST >> ~/.ssh/known_hosts
+  script:
+    - rsync -avz publish/ $DEPLOY_USER@$DEPLOY_HOST:/var/www/razor/
+  only:
+    - main
