@@ -3,9 +3,9 @@ stages:
   - deploy
 
 variables:
-  NEXUS_URL: "" # ВПИСАТЬ URL NEXUS, ПРИМЕР: http://NEXUS_IP:8081
+  NEXUS_URL: "$NEXUS_URL" # ВПИСАТЬ URL NEXUS, ПРИМЕР: http://NEXUS_IP:8081
   DEPLOY_USER: "ubuntu"
-  DEPLOY_HOST: "" # ВПИСАТЬ IP ВМ ДЛЯ ДЕПЛОЯ
+  DEPLOY_HOST: "$DEPLOY_HOST" # ВПИСАТЬ IP ВМ ДЛЯ ДЕПЛОЯ
   DOTNET_CLI_TELEMETRY_OPTOUT: "1"
 
 build:
